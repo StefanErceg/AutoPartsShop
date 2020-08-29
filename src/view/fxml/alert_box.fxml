@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6b0000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AlertBoxController">
+   <children>
+      <HBox alignment="CENTER" layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/main-logo.png" />
+               </image>
+            </ImageView>
+            <Label text="Auto parts shop" textFill="WHITE">
+               <font>
+                  <Font name="Monospaced Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label fx:id="message" alignment="CENTER" layoutX="286.0" layoutY="192.0" text="Message" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+         <font>
+            <Font name="Monospaced Regular" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="274.0" layoutY="332.0" mnemonicParsing="false" onAction="#OK" prefWidth="60.0" text="OK" AnchorPane.bottomAnchor="50.0">
+         <font>
+            <Font name="Monospaced Regular" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
