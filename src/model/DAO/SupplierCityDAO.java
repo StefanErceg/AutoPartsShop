@@ -10,6 +10,7 @@ public interface SupplierCityDAO {
     List<SupplierCity> suppliersCities();
     SupplierCity supplierCityByIDs(Integer supplierID, Integer cityID);
     boolean insert(SupplierCity supplierCity);
+    boolean update(SupplierCity supplierCity);
     boolean delete(SupplierCity supplierCity);
 
 }

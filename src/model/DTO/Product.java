@@ -8,30 +8,22 @@ public class Product {
     private String name;
     private BigDecimal quantity;
     private String barcode;
+    private BigDecimal price;
     private Manufacturer manufacturer;
     private Category category;
     private Boolean isActive;
     private String description;
 
-    public Product(Integer ID, String name, BigDecimal quantity, String barcode, Manufacturer manufacturer, Category category, Boolean isActive, String description) {
+    public Product(Integer ID, String name, BigDecimal quantity, String barcode, BigDecimal price, Manufacturer manufacturer, Category category, String description, Boolean isActive) {
         this.ID = ID;
         this.name = name;
         this.quantity = quantity;
         this.barcode = barcode;
+        this.price = price;
         this.manufacturer = manufacturer;
         this.category = category;
         this.isActive = isActive;
         this.description = description;
-    }
-
-    public Product(Integer ID, String name, BigDecimal quantity, String barcode, Manufacturer manufacturer, Category category, Boolean isActive) {
-        this.ID = ID;
-        this.name = name;
-        this.quantity = quantity;
-        this.barcode = barcode;
-        this.manufacturer = manufacturer;
-        this.category = category;
-        this.isActive = isActive;
     }
 
     public Integer getID() {
@@ -98,6 +90,22 @@ public class Product {
         this.description = description;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -109,5 +117,20 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(ID);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", barcode='" + barcode + '\'' +
+                ", price=" + price +
+                ", manufacturer=" + manufacturer +
+                ", category=" + category +
+                ", isActive=" + isActive +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

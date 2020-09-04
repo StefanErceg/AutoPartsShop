@@ -3,10 +3,7 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import view.Locations;
-import view.Manufacturers;
-import view.Products;
-import view.Suppliers;
+import view.*;
 
 public class DashboardController {
 
@@ -21,6 +18,10 @@ public class DashboardController {
 
     public void toProducts() {
         new Products().display();
+    }
+
+    public void toOrderProducts() {
+        new OrderProducts().display();
     }
 
     public void toManufacturers() {

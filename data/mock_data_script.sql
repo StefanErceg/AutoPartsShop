@@ -1,0 +1,17 @@
+insert into country (Name, Abbreviation) values ("Republic of Srpska", "RS");
+insert into country (Name, Abbreviation) values ("Serbia", "SR");
+insert into country (Name, Abbreviation) values ("Deutchland", "DE");
+insert into country (Name, Abbreviation) values ("France", "FR");
+insert into country (Name, Abbreviation) values ("Italia", "IT");
+insert into country (Name, Abbreviation) values ("Sweden", "SW");
+insert into country (Name, Abbreviation) values ("Japan", "JP");
+insert into country (Name, Abbreviation) values ("Korea", "KR");
+insert into country (Name, Abbreviation) values ("China", "PRC");
+insert into country (Name, Abbreviation) values ("Russia", "RU");
+insert into city (Name, Postcode, Country_ID) values ("Banja Luka", "78 000", 1);
+insert into city (Name, Postcode, Country_ID) values ("Doboj", "74 101", 1);
+insert into city (Name, Postcode, Country_ID) values ("Bijeljina", "76 300", 1);
+insert into city (Name, Postcode, Country_ID) values ("Istocno Sarajevo", "71 123", 1);
+insert into city (Name, Postcode, Country_ID) values ("Belgrade", "11 000", 2);
+insert into city (Name, Postcode, Country_ID) values ("Novi Sad", "21 101", 2);
+insert into city (Name, Postcode, Country_ID) values ("Kragujevac", "550 601", 2);

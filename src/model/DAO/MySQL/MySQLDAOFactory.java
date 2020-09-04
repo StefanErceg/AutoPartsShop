@@ -21,16 +21,11 @@ public class MySQLDAOFactory extends DAOFactory {
     public ManufacturerDAO getManufacturerDAO() {
         return new MySQLManufacturerDAO();
     }
-//
-//    @Override
-//    public PriceProductDAO getPriceProductDAO() {
-//        return new MySQLPriceProductDAO();
-//    }
-//
-//    @Override
-//    public ProductDAO getProductDAO() {
-//        return new MySQLProductDAO();
-//    }
+
+    @Override
+    public ProductDAO getProductDAO() {
+        return new MySQLProductDAO();
+    }
 
     @Override
     public SupplierCityDAO getSupplierCityDAO(){
@@ -41,19 +36,19 @@ public class MySQLDAOFactory extends DAOFactory {
     public SupplierDAO getSupplierDAO() {
         return new MySQLSupplierDAO();
     }
-//
-//    @Override
-//    public SupplierProductDAO getSupplierProductDAO() {
-//        return new MySQLSupplierProductDAO();
-//    }
-//
-//    @Override
-//    public VehicleDAO getVehicleDAO() {
-//        return new MySQLVehicleDAO();
-//    }
-//
-//    @Override
-//    public VehicleProductDAO getVehicleProductDAO() {
-//        return new MySQLVehicleProductDAO();
-//    }
+
+    @Override
+    public SupplierProductDAO getSupplierProductDAO() {
+        return new MySQLSupplierProductDAO();
+    }
+
+    @Override
+    public VehicleDAO getVehicleDAO() {
+        return new MySQLVehicleDAO();
+    }
+
+    @Override
+    public VehicleProductDAO getVehicleProductDAO() {
+        return new MySQLVehicleProductDAO();
+    }
 }

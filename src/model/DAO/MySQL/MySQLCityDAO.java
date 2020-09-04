@@ -55,8 +55,43 @@ public class MySQLCityDAO implements CityDAO {
     }
 
     @Override
-    public City cityByIDs(Integer countryID, String cityPostcode) {
-        return null;
+    public City cityByID(Integer cityID) {
+        City returnValue = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        String query = "select city.ID as ID, city.Name as Name, Postcode, Country_ID, city.IsActive as cityActive, "
+                + "country.Name as CountryName, country.Abbreviation as CountryAbbreviation "
+                + "from city inner join country on Country_ID = country.ID where city.IsActive = 1";
+        try {
+            connection = ConnectionPool.getInstance().checkOut();
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                returnValue = new City(
+                        resultSet.getInt("ID"),
+                        new Country(
+                                resultSet.getInt("Country_ID"),
+                                resultSet.getString("CountryName"),
+                                resultSet.getString("CountryAbbreviation")
+
+                        ),
+                        resultSet.getString("Postcode"),
+                        resultSet.getString("Name"),
+                        resultSet.getBoolean("cityActive")
+
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionPool.getInstance().checkIn(connection);
+            MySQLUtilities.getInstance().close(preparedStatement, resultSet);
+        }
+
+        return returnValue;
     }
 
     @Override

@@ -3,9 +3,10 @@ import javafx.stage.Stage;
 import model.DAO.DAOFactory;
 import model.DAO.MySQL.MySQLDAOFactory;
 import model.DAO.MySQL.MySQLUtilities;
-import model.DTO.Category;
-import model.DTO.Supplier;
+import model.DTO.*;
 import view.Dashboard;
+
+import java.util.List;
 
 public class Main extends Application {
 
@@ -18,3 +19,4 @@ public class Main extends Application {
         new Dashboard().display();
     }
 }
+

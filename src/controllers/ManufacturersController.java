@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import model.DAO.MySQL.MySQLDAOFactory;
 import model.DTO.Manufacturer;
 import view.AddEditManufacturer;
+import view.AlertBox;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,6 +45,30 @@ public class ManufacturersController {
         new AddEditManufacturer().display(null);
         loadManufacturers();
         displayManufacturers();
+    }
+
+    public void editManufacturer() {
+        Manufacturer selected = manufacturersTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            new AddEditManufacturer().display(selected);
+            loadManufacturers();
+            displayManufacturers();
+        } else {
+            new AlertBox().display("Manufacturer must be selected for edit!");
+        }
+    }
+
+    public void removeManufacturer() {
+        Manufacturer selected = manufacturersTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+             if (MySQLDAOFactory.getDAOFactory().getManufacturerDAO().delete(selected)) {
+                 new AlertBox().display("Manufacturer successfully deleted!");
+                 loadManufacturers();
+                 displayManufacturers();
+             } else new AlertBox().display("Error happened while removing manufacturer.");
+        } else {
+            new AlertBox().display("Manufacturer must be selected for delete!");
+        }
     }
 
     public void backToDash() {

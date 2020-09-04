@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`City` (
   `IsActive` TINYINT NULL DEFAULT 1,
   INDEX `fk_City_Country1_idx` (`Country_ID` ASC) VISIBLE,
   PRIMARY KEY (`ID`),
+  UNIQUE INDEX `Postcode_UNIQUE` (`Postcode` ASC) VISIBLE,
   CONSTRAINT `fk_City_Country1`
     FOREIGN KEY (`Country_ID`)
     REFERENCES `AutoPartsShop`.`Country` (`ID`)
@@ -84,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`Product` (
   `Name` VARCHAR(45) NOT NULL,
   `Quantity` DECIMAL(10,2) UNSIGNED NOT NULL,
   `Barcode` VARCHAR(45) NOT NULL,
+  `Price` DECIMAL(10,2) NOT NULL,
   `Description` TEXT NULL,
   `Manufacturer_ID` INT NOT NULL,
   `Category_ID` INT NOT NULL,
@@ -116,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`Vehicle` (
   `ProductionEnd` DATETIME NULL,
   `Manufacturer_ID` INT NOT NULL,
   `Engine` VARCHAR(45) NULL,
+  `IsActive` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`ID`),
   INDEX `fk_Vehicle_Manufacturer1_idx` (`Manufacturer_ID` ASC) VISIBLE,
   CONSTRAINT `fk_Vehicle_Manufacturer1`
@@ -134,6 +137,7 @@ COLLATE = utf8_unicode_ci;
 CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`Vehicle_Product` (
   `Vehicle_ID` INT NOT NULL,
   `Product_ID` INT NOT NULL,
+  `IsActive` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`Product_ID`, `Vehicle_ID`),
   INDEX `fk_Vehicle_has_Item_Item1_idx` (`Product_ID` ASC) VISIBLE,
   INDEX `fk_Vehicle_has_Item_Vehicle1_idx` (`Vehicle_ID` ASC) VISIBLE,
@@ -251,41 +255,23 @@ COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `AutoPartsShop`.`PriceProduct`
+-- Table `AutoPartsShop`.`Bill_Product`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`PriceProduct` (
-  `Product_ID` INT NOT NULL,
-  `From` DATETIME NOT NULL,
-  `To` DATETIME NULL,
-  `Price` DECIMAL(20,4) NOT NULL,
-  PRIMARY KEY (`Product_ID`, `From`),
-  CONSTRAINT `fk_PriceProduct_Product1`
-    FOREIGN KEY (`Product_ID`)
-    REFERENCES `AutoPartsShop`.`Product` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `AutoPartsShop`.`Bill_PriceProduct`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`Bill_PriceProduct` (
+CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`Bill_Product` (
   `Quantity` DECIMAL(10,2) NOT NULL,
   `Bill_ID` INT NOT NULL,
-  `PriceProduct_Product_ID` INT NOT NULL,
-  `PriceProduct_From` DATETIME NOT NULL,
-  PRIMARY KEY (`Bill_ID`, `PriceProduct_Product_ID`, `PriceProduct_From`),
+  `Product_ID` INT NOT NULL,
+  PRIMARY KEY (`Bill_ID`, `Product_ID`),
   INDEX `fk_Bill_PriceProduct_Bill1_idx` (`Bill_ID` ASC) VISIBLE,
-  INDEX `fk_Bill_PriceProduct_PriceProduct1_idx` (`PriceProduct_Product_ID` ASC, `PriceProduct_From` ASC) VISIBLE,
+  INDEX `fk_Bill_Product_Product1_idx` (`Product_ID` ASC) VISIBLE,
   CONSTRAINT `fk_Bill_PriceProduct_Bill1`
     FOREIGN KEY (`Bill_ID`)
     REFERENCES `AutoPartsShop`.`Bill` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Bill_PriceProduct_PriceProduct1`
-    FOREIGN KEY (`PriceProduct_Product_ID` , `PriceProduct_From`)
-    REFERENCES `AutoPartsShop`.`PriceProduct` (`Product_ID` , `From`)
+  CONSTRAINT `fk_Bill_Product_Product1`
+    FOREIGN KEY (`Product_ID`)
+    REFERENCES `AutoPartsShop`.`Product` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

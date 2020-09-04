@@ -44,6 +44,10 @@ public class AddEditManufacturerController {
         }
         else {
             title.setText("Edit manufacturer");
+            nameTextField.setText(manufacturer.getName());
+            hqTextField.setText(manufacturer.getHeadquarters());
+            cityComboBox.getSelectionModel().select(manufacturer.getCity().getName());
+            descriptionTextArea.setText(manufacturer.getDescription());
         }
     }
 
@@ -63,6 +67,17 @@ public class AddEditManufacturerController {
                     stage.close();
                 } else {
                     new AlertBox().display("Error happened while adding manufacturer. Please check input options.");
+                }
+            } else {
+                manufacturer.setName(name);
+                manufacturer.setHeadquarters(headquarters);
+                manufacturer.setCity(selectedCity);
+                manufacturer.setDescription(description);
+                if (MySQLDAOFactory.getDAOFactory().getManufacturerDAO().update(manufacturer)) {
+                    new AlertBox().display("Manufacturer successfully edited!");
+                    stage.close();
+                } else {
+                    new AlertBox().display("Error happened while editing manufacturer. Please check input options.");
                 }
             }
         } else {

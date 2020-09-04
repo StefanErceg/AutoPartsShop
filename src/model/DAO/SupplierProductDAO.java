@@ -7,8 +7,7 @@ import model.DTO.SupplierProduct;
 import java.util.List;
 
 public interface SupplierProductDAO {
-    List<Supplier> supplierForProduct(Integer productID);
-    List<Product> productsForSupplier(Integer SupplierID);
+    List<SupplierProduct> suppliersProducts();
+    List<Supplier> suppliersForProduct(Product product);
     boolean insert(SupplierProduct supplierProduct);
-    boolean update(SupplierProduct supplierProduct);
 }

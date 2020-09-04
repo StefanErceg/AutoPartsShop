@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import model.DAO.MySQL.MySQLDAOFactory;
 import model.DTO.Supplier;
 import model.DTO.SupplierCity;
+import view.AddCityToSupplier;
 import view.AddEditSupplier;
 import view.AlertBox;
 
@@ -47,6 +48,17 @@ public class SuppliersController {
         displaySuppliersCities();
     }
 
+    public void editSupplier() {
+        SupplierCity selected = supplierCityTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            new AddEditSupplier().display(selected);
+            loadSuppliersCities();
+            displaySuppliersCities();
+        } else {
+            new AlertBox().display("Supplier must be selected for editing!");
+        }
+    }
+
     public void removeSupplier() {
         SupplierCity selected = supplierCityTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
@@ -62,6 +74,17 @@ public class SuppliersController {
 
     public void backToDash() {
         stage.close();
+    }
+
+    public void addCityToSupplier() {
+        if (supplierCityTable.getSelectionModel().getSelectedItem() != null) {
+            Supplier supplier = supplierCityTable.getSelectionModel().getSelectedItem().getSupplier();
+            new AddCityToSupplier().display(supplier);
+            loadSuppliersCities();
+            displaySuppliersCities();
+        } else {
+            new AlertBox().display("Supplier must be selected for adding city!");
+        }
     }
 
     private void loadSuppliersCities() {

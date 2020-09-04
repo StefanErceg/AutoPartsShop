@@ -10,4 +10,5 @@ public interface ProductDAO {
     boolean insert(Product product);
     boolean update(Product product);
     boolean delete(Product product);
+    Integer lastID();
 }

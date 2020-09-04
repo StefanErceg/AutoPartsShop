@@ -70,4 +70,15 @@ public class City {
     public int hashCode() {
         return Objects.hash(country, postcode);
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "ID=" + ID +
+                ", country=" + country +
+                ", postcode='" + postcode + '\'' +
+                ", name='" + name + '\'' +
+                ", isActive=" + isActive +
+                '}';
+    }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6b0000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.fxml.AddCityToSupplier">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #6b0000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddCityToSupplierController">
    <children>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -39,18 +39,18 @@
                   <Font name="Monospaced Regular" size="14.0" />
                </font>
             </Label>
-            <ComboBox prefWidth="200.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="cityComboBox" prefWidth="200.0" GridPane.columnIndex="1" />
             <Label text="Address" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="Monospaced Regular" size="14.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="addressTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <children>
-            <Button mnemonicParsing="false" prefWidth="70.0" text="Save">
+            <Button mnemonicParsing="false" onAction="#save" prefWidth="70.0" text="Save">
                <font>
                   <Font size="14.0" />
                </font>

@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #6b0000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductsController">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #6b0000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProductsController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -44,7 +44,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Remove">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="35.0" prefWidth="120.0" text="Remove">
                <font>
                   <Font size="14.0" />
                </font>
@@ -56,7 +56,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" text="Edit">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#editProduct" prefHeight="35.0" prefWidth="120.0" text="Edit">
                <font>
                   <Font size="14.0" />
                </font>
@@ -73,58 +73,22 @@
             <Insets bottom="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <VBox layoutX="40.0" layoutY="250.0" prefHeight="100.0" spacing="5.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="250.0">
+      <GridPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="320.0">
          <children>
-            <Label text="Filters" textFill="WHITE">
-               <font>
-                  <Font name="Monospaced Regular" size="16.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="250.0">
-               <children>
-                  <Label prefHeight="32.0" prefWidth="109.0" text="Manufacturer" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font name="Monospaced Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox prefWidth="150.0" />
-                  <Label layoutX="10.0" layoutY="10.0" prefHeight="57.0" prefWidth="110.0" text="Vehicle manufacturer" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font name="Monospaced Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox layoutX="38.0" layoutY="10.0" prefWidth="150.0" />
-                  <Label layoutX="188.0" layoutY="10.0" prefHeight="32.0" prefWidth="52.0" text="Model" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font name="Monospaced Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox layoutX="216.0" layoutY="10.0" prefWidth="150.0" />
-                  <Label layoutX="366.0" layoutY="10.0" prefHeight="32.0" prefWidth="43.0" text="Year" textFill="WHITE" wrapText="true">
-                     <font>
-                        <Font name="Monospaced Regular" size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox layoutX="394.0" layoutY="10.0" prefWidth="150.0" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <GridPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="360.0">
-         <children>
-            <TableView layoutX="40.0" layoutY="255.0" maxHeight="800.0" maxWidth="1200.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="100.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <TableView fx:id="productsTable" layoutX="40.0" layoutY="255.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="100.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="nameColumn" text="Name" />
+                  <TableColumn fx:id="manufacturerColumn" text="Manufacturer" />
+                  <TableColumn fx:id="vehicleColumn" text="Vehicle" />
+                  <TableColumn fx:id="priceColumn" text="Price" />
+                  <TableColumn fx:id="quantityColumn" text="Quantity" />
+                  <TableColumn fx:id="barcodeColumn" text="Barcode" />
+                  <TableColumn fx:id="categoryColumn" text="Category" />
+                  <TableColumn fx:id="descriptionColumn" text="Description" />
+               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
-               <columns>
-                  <TableColumn maxWidth="140.0" minWidth="80.0" prefWidth="100.0" text="Name" />
-                  <TableColumn maxWidth="140.0" minWidth="80.0" prefWidth="100.0" text="Manufacturer" />
-                  <TableColumn maxWidth="140.0" minWidth="80.0" prefWidth="100.0" text="Quantity" />
-                  <TableColumn maxWidth="140.0" minWidth="80.0" prefWidth="100.0" text="Barcode" />
-                  <TableColumn maxWidth="140.0" minWidth="80.0" prefWidth="100.0" text="Category" />
-                  <TableColumn maxWidth="140.0" minWidth="80.0" prefWidth="100.0" text="Available" />
-                  <TableColumn maxWidth="400.0" prefWidth="100.0" text="Description" />
-               </columns>
             </TableView>
          </children>
          <columnConstraints>
@@ -146,5 +110,15 @@
             </ImageView>
          </graphic>
       </Button>
+      <TextField fx:id="searchTextField" layoutX="80.0" layoutY="263.0" onKeyTyped="#search" prefWidth="220.0" promptText="search products" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="263.0">
+         <font>
+            <Font name="Monospaced Regular" size="14.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="58.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="260.0">
+         <image>
+            <Image url="@../images/search.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

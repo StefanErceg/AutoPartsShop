@@ -86,4 +86,9 @@ public class Manufacturer {
     public int hashCode() {
         return Objects.hash(ID);
     }
+
+    @Override
+    public String toString() {
+        return  name + ", " + city.getCountry().getAbbreviation();
+    }
 }

@@ -49,4 +49,13 @@ public class Country {
     public int hashCode() {
         return Objects.hash(ID);
     }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", abbreviation='" + abbreviation + '\'' +
+                '}';
+    }
 }
