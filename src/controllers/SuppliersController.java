@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.DAO.MySQL.MySQLDAOFactory;
 import model.DTO.Supplier;
@@ -14,6 +15,7 @@ import view.AddEditSupplier;
 import view.AlertBox;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SuppliersController {
 
@@ -24,6 +26,9 @@ public class SuppliersController {
 
     @FXML
     private TableView<SupplierCity> supplierCityTable;
+
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private TableColumn<SupplierCity, String> supplierNameColumn, cityNameColumn, addressColumn, postcodeColumn, countryNameColumn;
@@ -74,6 +79,15 @@ public class SuppliersController {
 
     public void backToDash() {
         stage.close();
+    }
+
+    public void search() {
+        String keyword = searchTextField.getText().toUpperCase();
+        supplierCityTable.getItems().clear();
+        supplierCityTable.getItems().addAll(suppliersCities.stream().filter(supplierCity ->
+                supplierCity.getSupplier().getName().toUpperCase().contains(keyword)).collect(Collectors.toList()));
+        supplierCityTable.refresh();
+
     }
 
     public void addCityToSupplier() {

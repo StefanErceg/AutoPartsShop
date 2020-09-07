@@ -124,7 +124,7 @@
             <Image url="@../images/search.png" />
          </image>
       </ImageView>
-      <TextField layoutX="70.0" layoutY="253.0" prefWidth="220.0" promptText="search suppliers" AnchorPane.leftAnchor="80.0">
+      <TextField fx:id="searchTextField" layoutX="70.0" layoutY="253.0" onKeyTyped="#search" prefWidth="220.0" promptText="search suppliers" AnchorPane.leftAnchor="80.0">
          <font>
             <Font name="Monospaced Regular" size="14.0" />
          </font>

@@ -214,6 +214,7 @@ CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`User_Bank` (
   PRIMARY KEY (`ID`),
   INDEX `fk_User_Bank_User1_idx` (`User_ID` ASC) VISIBLE,
   INDEX `fk_User_Bank_Bank1_idx` (`Bank_ID` ASC) VISIBLE,
+  UNIQUE INDEX `AccountNumber_UNIQUE` (`AccountNumber` ASC) VISIBLE,
   CONSTRAINT `fk_User_Bank_User1`
     FOREIGN KEY (`User_ID`)
     REFERENCES `AutoPartsShop`.`User` (`ID`)
@@ -361,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`Contract` (
   `Role_ID` INT NOT NULL,
   `Employee_ID` INT NOT NULL,
   `User_Bank_ID` INT NOT NULL,
-  PRIMARY KEY (`Role_ID`, `Employee_ID`, `From`),
+  PRIMARY KEY (`Role_ID`, `Employee_ID`, `From`, `User_Bank_ID`),
   INDEX `fk_Contract_Role1_idx` (`Role_ID` ASC) VISIBLE,
   INDEX `fk_Contract_Employee1_idx` (`Employee_ID` ASC) VISIBLE,
   INDEX `fk_Contract_User_Bank1_idx` (`User_Bank_ID` ASC) VISIBLE,
@@ -391,7 +392,7 @@ COLLATE = utf8_unicode_ci;
 CREATE TABLE IF NOT EXISTS `AutoPartsShop`.`Supplier` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(45) NOT NULL,
-  `isActive` TINYINT NOT NULL DEFAULT 1,
+  `IsActive` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`ID`))
 ENGINE = InnoDB;
 
